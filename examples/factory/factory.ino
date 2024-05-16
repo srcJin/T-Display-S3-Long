@@ -131,8 +131,9 @@ void setup()
     xSemaphore = xSemaphoreCreateBinary();
     xSemaphoreGive(xSemaphore);
 
-    Serial.begin(115200);
+    Serial.begin(9600);
     Serial.println("sta\n");
+    Serial.println("Here!!!");
 
     pinMode(PIN_BAT_VOLT, ANALOG);
 
@@ -146,6 +147,8 @@ void setup()
 
     Wire.begin(TOUCH_IICSDA, TOUCH_IICSCL);
     result =  PMU.init(Wire, TOUCH_IICSDA, TOUCH_IICSCL, SY6970_SLAVE_ADDRESS);
+    Serial.println("Hello! in setup!");
+
     if (result == false) {
         Serial.println("PMU is not online...");
         delay(50);
@@ -220,6 +223,8 @@ extern size_t   lcd_PushColors_len;
 void            loop()
 {
     delay(1);
+    Serial.println("Here!!!");
+
     if (transfer_num <= 0 && lcd_PushColors_len <= 0)
         lv_timer_handler();
 
@@ -282,6 +287,8 @@ void lv_delay_ms(int x)
 
 void wifi_test(void)
 {
+    Serial.println("Here!!!");
+
     String    text;
     lv_obj_t *boj = lv_obj_create(lv_scr_act());
     lv_obj_set_style_pad_all(boj, 0, 0);
